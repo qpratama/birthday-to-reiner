@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Happy Birthday!</title>
+    <style>
+      body {
+        background: #000;
+        color: #0f0;
+        font-family: monospace;
+        padding: 20px;
+      }
+      #terminal {
+        white-space: pre-wrap;
+      }
+      input {
+        background: black;
+        color: lime;
+        border: none;
+        outline: none;
+        font-family: monospace;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="terminal">
+      <p>Welcome to BIRTHDAY TERMINAL v1.0</p>
+      <img src="img/hepibday.png" alt="birthday" />
+      <p>Type 'help' to see available commands.</p>
+    </div>
+    <input id="commandInput" autofocus />
+    <script>
+      const terminal = document.getElementById("terminal");
+      const input = document.getElementById("commandInput");
+
+      const commands = {
+        help: () =>
+          "Available commands:\ninstruction\nread_letter\nopen_gift\nview_memories\nclear",
+        instruction: () =>
+          "buka letter dulu, terus gift, terakhir memories yak.",
+        open_gift: () =>
+          "🎁 Gw bakal kesana waktu graduation lu tahun depan (I'll do my best yak)! thank you udah ngundurin skrispi lu! HAHAHA",
+        read_letter: () =>
+          "Dear my ngentot(not literally lol), Reiner,\nSelamat Ulang Tahun yang ke-27! \ngw gamau ngasih wish karena gamau lu berasa diocehin :) tapi, semoga apa yang lu harapin bisa tercapai semuanya. \ngw bikin ini soalnya kayaknya lu lagi struggle banget dan gw merasa gw belom jadi temen yang baik lu (no homo HAHAHA). \nwell, cuma mau ngingetin kalo gw dan JAMED ada selalu buat lu. Jangan lupa reach out ke kita kalo lu lagi ada beban pikiran atau apapun lah.\nSEMANGAT NGENTOTT!!",
+        view_memories: () =>
+          "📸 unfortunately, I can't find photo of us together HAHAHA. let's make some in Germany next year!",
+        clear: () => {
+          terminal.innerHTML = "";
+          return "";
+        },
+      };
+
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          const command = input.value.trim();
+          terminal.innerHTML += `\n> ${command}\n`;
+          const output = commands[command]
+            ? commands[command]()
+            : "Command not found.";
+          if (output) terminal.innerHTML += `${output}\n`;
+          input.value = "";
+          window.scrollTo(0, document.body.scrollHeight);
+        }
+      });
+    </script>
+  </body>
+</html>
